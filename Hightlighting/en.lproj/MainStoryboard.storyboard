@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tvN-Nx-ljN">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+    </dependencies>
+    <scenes>
+        <!--Notes View Controller - Notes and Highlights-->
+        <scene sceneID="ekL-iX-Ecg">
+            <objects>
+                <viewController id="mA3-rR-iFm" customClass="NotesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gtq-Ip-WMw">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="76" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mgz-OR-s1B">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="CellIdentifier" rowHeight="76" id="t1P-fY-Bs8">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="78"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="75"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mA3-rR-iFm" id="3kG-6P-ISG"/>
+                                    <outlet property="delegate" destination="mA3-rR-iFm" id="K9a-Oz-NV0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mgz-OR-s1B" firstAttribute="bottom" secondItem="Gtq-Ip-WMw" secondAttribute="bottom" type="default" id="8N5-jK-t9b"/>
+                            <constraint firstItem="Mgz-OR-s1B" firstAttribute="leading" secondItem="Gtq-Ip-WMw" secondAttribute="leading" type="default" id="AEc-ev-pWn"/>
+                            <constraint firstItem="Mgz-OR-s1B" firstAttribute="trailing" secondItem="Gtq-Ip-WMw" secondAttribute="trailing" type="default" id="Wcb-xe-8Rm"/>
+                            <constraint firstItem="Mgz-OR-s1B" firstAttribute="top" secondItem="Gtq-Ip-WMw" secondAttribute="top" type="default" id="th5-RG-hXd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notes and Highlights" id="Whw-aE-n1G"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ee9-lM-pdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-231" y="711"/>
+        </scene>
+        <!--Annotation - Add Annotation-->
+        <scene sceneID="5Wf-3y-ZwV">
+            <objects>
+                <viewController id="9W0-vv-VmS" customClass="Annotation" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rlp-D8-0Dl">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="USD-gY-9rZ">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9W0-vv-VmS" id="tll-z1-2Ee"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="USD-gY-9rZ" firstAttribute="bottom" secondItem="Rlp-D8-0Dl" secondAttribute="bottom" type="default" id="aDd-Qb-UaR"/>
+                            <constraint firstItem="USD-gY-9rZ" firstAttribute="top" secondItem="Rlp-D8-0Dl" secondAttribute="top" type="default" id="hxe-HW-uN1"/>
+                            <constraint firstItem="USD-gY-9rZ" firstAttribute="trailing" secondItem="Rlp-D8-0Dl" secondAttribute="trailing" type="default" id="iLr-4r-LEc"/>
+                            <constraint firstItem="USD-gY-9rZ" firstAttribute="leading" secondItem="Rlp-D8-0Dl" secondAttribute="leading" type="default" id="o22-WX-vPH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Annotation" id="cyx-vl-Zcc">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="rYq-Tx-lRj">
+                            <connections>
+                                <segue destination="2" kind="push" id="JmW-Hw-YSf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="annotationText" destination="USD-gY-9rZ" id="p3p-OM-7YO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RcP-Rt-Kej" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="321" y="706"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUn-CF-e8M">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Wo2-HX-pwX" appends="YES" id="ddc-3w-quV"/>
+                                </connections>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLf-ut-htO">
+                                <items>
+                                    <barButtonItem tag="1" title="Font +" id="VW3-1N-1gM">
+                                        <connections>
+                                            <action selector="changeTextFontSize:" destination="2" id="V1E-fa-CSk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem tag="2" title="Font -" id="JZa-qL-20x">
+                                        <connections>
+                                            <action selector="changeTextFontSize:" destination="2" id="HFY-QK-1OH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Dark/Light" id="PeF-EL-9mE">
+                                        <connections>
+                                            <action selector="darkTheme" destination="2" id="JWF-nX-0pq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Notes" id="qo9-yu-b9r">
+                                        <connections>
+                                            <segue destination="mA3-rR-iFm" kind="push" identifier="viewNotes" id="XCT-cY-UR9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="BLf-ut-htO" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="5jU-QK-upW"/>
+                            <constraint firstItem="zUn-CF-e8M" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="8k3-s7-tbI"/>
+                            <constraint firstItem="zUn-CF-e8M" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="I9v-Ah-zIE"/>
+                            <constraint firstItem="BLf-ut-htO" firstAttribute="top" secondItem="zUn-CF-e8M" secondAttribute="bottom" type="default" id="JCd-Em-XIu"/>
+                            <constraint firstItem="BLf-ut-htO" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="WKg-Fu-HQQ"/>
+                            <constraint firstItem="BLf-ut-htO" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bQe-DL-qRC"/>
+                            <constraint firstItem="zUn-CF-e8M" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="pTC-49-IDp"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="IGS-Ci-wPk" appends="YES" id="3SC-cf-6L4"/>
+                        </connections>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="gTK-Ux-uEt"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="myWebView" destination="zUn-CF-e8M" id="XSv-Cv-qkp"/>
+                        <outlet property="textBiggerButton" destination="VW3-1N-1gM" id="B7u-7a-u4d"/>
+                        <outlet property="textOptions" destination="BLf-ut-htO" id="Urt-IK-PuQ"/>
+                        <outlet property="textSmallerButton" destination="JZa-qL-20x" id="0kb-Z6-ydQ"/>
+                        <segue destination="9W0-vv-VmS" kind="push" identifier="addAnnotation" id="fAk-pl-v8v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="Wo2-HX-pwX">
+                    <connections>
+                        <action selector="handleSingleTap:" destination="2" id="uUl-ob-aSc"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="IGS-Ci-wPk">
+                    <connections>
+                        <action selector="handleSwipeRight:" destination="2" id="RpI-hd-jTj"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="656" y="14"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FQz-Y0-Dwj">
+            <objects>
+                <navigationController id="tvN-Nx-ljN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OE2-XV-bWc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="dy0-bK-IGw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nwg-cs-EK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="153" y="-100"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="Annotation" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Annotation.h"/>
+            <relationships>
+                <relationship kind="outlet" name="annotationText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NotesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="notesAndHightlights" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNote:"/>
+                <relationship kind="action" name="changeFont"/>
+                <relationship kind="action" name="changeTextFontSize:"/>
+                <relationship kind="action" name="darkTheme"/>
+                <relationship kind="action" name="handleSingleTap:" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="action" name="handleSwipeRight:" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="action" name="increaseFont"/>
+                <relationship kind="outlet" name="myWebView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="singleTap" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="outlet" name="swipeRight" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="outlet" name="textBiggerButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="textOptions" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="textSmallerButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="dy0-bK-IGw"/>
+    </inferredMetricsTieBreakers>
+</document>

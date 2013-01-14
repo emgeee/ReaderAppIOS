@@ -1,2 +1,4 @@
-ReaderAppIOS
-============
+ReaderApp
+=========
+
+mockup of reader app 
