@@ -15,12 +15,12 @@
 
 @implementation ViewController
 @synthesize myWebView;
-@synthesize textBiggerButton;
-@synthesize textSmallerButton;
 @synthesize textOptions;
 @synthesize singleTap;
 @synthesize selectionText;
 @synthesize selections;
+@synthesize fontSlider;
+
 
 
 
@@ -32,6 +32,7 @@
      
     NSURL *indexFileURL = [[NSBundle mainBundle] URLForResource:@"textFile" withExtension:@"html"];
     [myWebView loadRequest:[NSURLRequest requestWithURL:indexFileURL]];
+    [myWebView stringByEvaluatingJavaScriptFromString:@"document.body.style.fontFamily='HelveticaNeue, Helvetica'"];
     
         
 
@@ -51,42 +52,6 @@
 
 -(void) viewDidAppear:(BOOL)animated {
      [self.navigationController setNavigationBarHidden:YES animated:animated];
-}
-
-- (IBAction)changeTextFontSize:(id)sender;
-
-{   //set font size and min and max text values
-    static int textFontSize;
-    int MyTextSizeMin = 12;
-    int MyTextSizeMax = 100;
-    
-    // disable buttons when they're out of the range.
-    BOOL smallerEnabled = textFontSize > MyTextSizeMin;
-    BOOL biggerEnabled = textFontSize < MyTextSizeMax;
-    
-    
-    
-    //increment or decrement value of textFontSize depending on which button is pressed 
-    if ([sender tag]==1) {
-        NSLog(@"1+");
-      int  difference=2;
-        textFontSize=textFontSize+difference;
-          [textBiggerButton setEnabled:biggerEnabled];
-       
-    } else {
-        NSLog(@" -");
-        int difference=-2;
-        textFontSize=textFontSize+difference;
-         [textSmallerButton setEnabled:smallerEnabled];
-      
-
-    }
-    
-    NSLog(@"%d", textFontSize);
-
-    NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize='%dpt'",
-                          textFontSize];
-    [myWebView stringByEvaluatingJavaScriptFromString:jsString];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,24 +84,7 @@
 -(IBAction)addNote:(id)sender {
     [self performSegueWithIdentifier:@"addAnnotation" sender:sender];
 }
--(void)increaseFont {
-    //increment varibale count
-    static float count;
-    count= count+1;
-    NSInteger fontSize = 10+count;
-    NSString *gsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize='%dpt'", fontSize];
-    [myWebView stringByEvaluatingJavaScriptFromString:gsString];
-}
 
-
--(void)changeFont {
-    //increment varibale count
-    static float count;
-    count= count+1;
-    NSInteger fontSize = 10+count;
-    NSString *gsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize='%dpt'", fontSize];
-    [myWebView stringByEvaluatingJavaScriptFromString:gsString];
-}
 
 -(void)darkTheme {
     
@@ -213,6 +161,14 @@
 
 -(IBAction)handleSwipeRight:(UISwipeGestureRecognizer *)swipeRight {
     textOptions.hidden=FALSE;
+}
+
+-(IBAction)sliderValueChanged:(UISlider *)sender {
+    float fontSize=[sender value];
+       
+    NSString *gsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize='%fpt'", fontSize];
+    [myWebView stringByEvaluatingJavaScriptFromString:gsString];
+
 }
 
 

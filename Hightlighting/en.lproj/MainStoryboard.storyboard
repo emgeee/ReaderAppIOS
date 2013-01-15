@@ -101,16 +101,6 @@
                             </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLf-ut-htO">
                                 <items>
-                                    <barButtonItem tag="1" title="Font +" id="VW3-1N-1gM">
-                                        <connections>
-                                            <action selector="changeTextFontSize:" destination="2" id="V1E-fa-CSk"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem tag="2" title="Font -" id="JZa-qL-20x">
-                                        <connections>
-                                            <action selector="changeTextFontSize:" destination="2" id="HFY-QK-1OH"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem title="Dark/Light" id="PeF-EL-9mE">
                                         <connections>
                                             <action selector="darkTheme" destination="2" id="JWF-nX-0pq"/>
@@ -121,6 +111,15 @@
                                             <segue destination="mA3-rR-iFm" kind="push" identifier="viewNotes" id="XCT-cY-UR9"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Font Size" style="plain" id="fGb-kv-feQ">
+                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="8" maxValue="30" id="dri-vX-tdo">
+                                            <rect key="frame" x="160" y="11" width="118" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="sliderValueChanged:" destination="2" eventType="valueChanged" id="HwY-oF-0BG"/>
+                                            </connections>
+                                        </slider>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -128,11 +127,11 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="BLf-ut-htO" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="5jU-QK-upW"/>
-                            <constraint firstItem="zUn-CF-e8M" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="8k3-s7-tbI"/>
+                            <constraint firstItem="zUn-CF-e8M" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="GEu-VD-iif"/>
                             <constraint firstItem="zUn-CF-e8M" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="I9v-Ah-zIE"/>
-                            <constraint firstItem="BLf-ut-htO" firstAttribute="top" secondItem="zUn-CF-e8M" secondAttribute="bottom" type="default" id="JCd-Em-XIu"/>
                             <constraint firstItem="BLf-ut-htO" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="WKg-Fu-HQQ"/>
                             <constraint firstItem="BLf-ut-htO" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bQe-DL-qRC"/>
+                            <constraint firstItem="zUn-CF-e8M" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="eze-8g-wgw"/>
                             <constraint firstItem="zUn-CF-e8M" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="pTC-49-IDp"/>
                         </constraints>
                         <connections>
@@ -143,10 +142,9 @@
                     <navigationItem key="navigationItem" id="gTK-Ux-uEt"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="fontSlider" destination="dri-vX-tdo" id="hn7-Vu-KzE"/>
                         <outlet property="myWebView" destination="zUn-CF-e8M" id="XSv-Cv-qkp"/>
-                        <outlet property="textBiggerButton" destination="VW3-1N-1gM" id="B7u-7a-u4d"/>
                         <outlet property="textOptions" destination="BLf-ut-htO" id="Urt-IK-PuQ"/>
-                        <outlet property="textSmallerButton" destination="JZa-qL-20x" id="0kb-Z6-ydQ"/>
                         <segue destination="9W0-vv-VmS" kind="push" identifier="addAnnotation" id="fAk-pl-v8v"/>
                     </connections>
                 </viewController>
@@ -202,19 +200,16 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addNote:"/>
+                <relationship kind="action" name="changeButtonPressed:"/>
                 <relationship kind="action" name="changeFont"/>
-                <relationship kind="action" name="changeTextFontSize:"/>
                 <relationship kind="action" name="darkTheme"/>
-                <relationship kind="action" name="handleSingleTap:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="handleSwipeRight:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="action" name="increaseFont"/>
+                <relationship kind="action" name="sliderValueChanged:"/>
+                <relationship kind="outlet" name="fontSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="myWebView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="singleTap" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="swipeRight" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="outlet" name="textBiggerButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="textOptions" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="textSmallerButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
     </classes>

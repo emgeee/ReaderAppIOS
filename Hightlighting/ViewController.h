@@ -16,18 +16,21 @@
       
     
 @property IBOutlet UIWebView *myWebView;
-@property IBOutlet UIBarButtonItem *textBiggerButton;
-@property IBOutlet UIBarButtonItem *textSmallerButton;
 @property (nonatomic, retain) IBOutlet UIToolbar *textOptions;
 @property IBOutlet UISwipeGestureRecognizer *singleTap;
 @property IBOutlet UISwipeGestureRecognizer *swipeRight;
 @property NSString *selectionText;
 @property NSMutableArray *selections;
+@property IBOutlet UISlider *fontSlider;
 
 
 
 -(IBAction) increaseFont;
 -(IBAction) changeFont;
 -(IBAction) darkTheme;
+
+//these actions deal with the font slider 
+- (IBAction) sliderValueChanged:(id)sender;
+- (IBAction) changeButtonPressed:(id)sender;
 @end
 
