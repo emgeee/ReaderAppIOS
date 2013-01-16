@@ -62,25 +62,13 @@
 -(void)annotate {
     NSLog(@"annotating");
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"AnnotationLogo.png"] forState:UIControlStateNormal];
-    [button addTarget:self
-               action:@selector(addNote:)
-     forControlEvents:UIControlEventTouchDown];
-    
-    
-    [myWebView addSubview:button];
-    
     //change the text to let you know there is an annoation that correlates with it
     [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('underline', false, 'nil')"];
     
-    CGRect selectedTextFrame = CGRectFromString([myWebView stringByEvaluatingJavaScriptFromString:@"getRectForSelectedText()"]);
-
-    NSLog(@"%@", NSStringFromCGRect(selectedTextFrame));
-    
-    [button setTitle:@"Annotation" forState:UIControlStateNormal];
-    button.frame = CGRectMake(270.0, selectedTextFrame.origin.y, 50.0, 50.0);
+    NSString *strInputJS= [myWebView stringByEvaluatingJavaScriptFromString:@"pasteHtmlAtCaret();"];
+    [myWebView stringByEvaluatingJavaScriptFromString:strInputJS];
    }
+
 -(IBAction)addNote:(id)sender {
     [self performSegueWithIdentifier:@"addAnnotation" sender:sender];
 }
@@ -151,8 +139,17 @@
     }
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
-
+    if ([[request.URL absoluteString]compare:@"http://google.com/"] == NSOrderedSame) {
+        NSLog(@"%@", [request.URL absoluteString]);
+        
+        [self performSegueWithIdentifier:@"addAnnotation" sender:self];
+        
+        return NO;
+        
+    }
+}
 
 -(IBAction)handleSingleTap:(UISwipeGestureRecognizer *)singleTap {
     textOptions.hidden=TRUE;
