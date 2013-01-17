@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "singletonObj.h"
 
 
 
 @interface ViewController : UIViewController <UIWebViewDelegate>  {
-    NSMutableArray *selections;
+    singletonObj *selections;
 }
       
     
@@ -20,17 +21,22 @@
 @property IBOutlet UISwipeGestureRecognizer *singleTap;
 @property IBOutlet UISwipeGestureRecognizer *swipeRight;
 @property NSString *selectionText;
-@property NSMutableArray *selections;
 @property IBOutlet UISlider *fontSlider;
 
 
 
--(IBAction) increaseFont;
--(IBAction) changeFont;
 -(IBAction) darkTheme;
+
+//just for shits
+-(IBAction)addToSingleton:(id)sender;
+
 
 //these actions deal with the font slider 
 - (IBAction) sliderValueChanged:(id)sender;
 - (IBAction) changeButtonPressed:(id)sender;
+
+//this is just for test purposes
+@property (strong, nonatomic) IBOutlet UILabel *displayValues;
+@property (strong, nonatomic) IBOutlet UITextField *enterAnotherValue;
 @end
 

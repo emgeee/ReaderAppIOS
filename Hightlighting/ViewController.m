@@ -18,9 +18,9 @@
 @synthesize textOptions;
 @synthesize singleTap;
 @synthesize selectionText;
-@synthesize selections;
 @synthesize fontSlider;
-
+@synthesize enterAnotherValue;
+@synthesize displayValues;
 
 
 
@@ -43,7 +43,9 @@
     [UIMenuController sharedMenuController].menuItems = [NSArray arrayWithObjects:testMenuItem, annotate, nil];
     selections=[[NSMutableArray alloc] init];
     
-    //make JS calls
+    //make singleton instance
+    selections=[singletonObj singleObj];
+    selections.notes=[[NSMutableArray alloc] init];
     
    
 
@@ -69,9 +71,7 @@
     [myWebView stringByEvaluatingJavaScriptFromString:strInputJS];
    }
 
--(IBAction)addNote:(id)sender {
-    [self performSegueWithIdentifier:@"addAnnotation" sender:sender];
-}
+
 
 
 -(void)darkTheme {
@@ -111,8 +111,8 @@
    
     //array that holds the highlights
     
-    [selections addObject:selectionText];
-    NSLog(@"%@", [selections objectAtIndex:0]);
+    [selections.notes addObject:selectionText];
+    NSLog(@"%@", [selections.notes objectAtIndex:0]);
     
     
     //get the current color of the text bkgrd and see if the background color is yellow. aka the text is already highlighted
@@ -134,7 +134,7 @@
         NSLog(@"yes");
         // Get destination view
         NotesViewController *vc = [segue destinationViewController];
-        vc.viewSelections=selections;
+        vc.viewSelections=selections.notes;;
         
     }
 }
@@ -167,6 +167,8 @@
     [myWebView stringByEvaluatingJavaScriptFromString:gsString];
 
 }
+
+
 
 
 @end

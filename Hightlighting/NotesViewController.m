@@ -34,9 +34,17 @@
     NSInteger size= [viewSelections count];
     NSLog(@"%d", size);
     [super viewDidLoad];
+    
+    anotherString= [singletonObj singleObj];
        
   
 }
+//just for practice
+-(void)viewWillAppear:(BOOL)animated
+{
+    //[self showSingleton].text = anotherString.globalstirng;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
