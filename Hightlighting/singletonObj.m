@@ -11,6 +11,7 @@
 @implementation singletonObj
 
 @synthesize notes;
+@synthesize annotations;
 
 +(singletonObj *) singleObj {
     static singletonObj *single=nil;

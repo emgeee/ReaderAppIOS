@@ -14,7 +14,6 @@
 @end
 
 @implementation Annotation
-@synthesize annotations;
 @synthesize annotationText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,7 +29,9 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    annotations=[[NSMutableArray alloc] init];
+    
+       addedNotes=[singletonObj singleObj];
+    addedNotes.annotations=[[NSMutableArray alloc] init];
 
 	// Do any additional setup after loading the view.
 }
@@ -62,7 +63,7 @@
     NSLog(@"ended now");
     NSString *annotationInput= annotationText.text;
     NSLog(@"%@",annotationInput);
-    [annotations addObject:annotationInput];
-    NSLog(@"%d", [annotations count]);
+    [addedNotes.annotations addObject:@"best"];
+    NSLog(@"%d", [addedNotes.annotations count]);
 }
 @end

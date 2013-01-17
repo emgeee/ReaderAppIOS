@@ -41,11 +41,12 @@
     UIMenuItem *testMenuItem = [[UIMenuItem alloc] initWithTitle:@"Highlight"  action:@selector(highlight:)];
     UIMenuItem *annotate     = [[UIMenuItem alloc] initWithTitle:@"Annotate"   action:@selector(annotate)];
     [UIMenuController sharedMenuController].menuItems = [NSArray arrayWithObjects:testMenuItem, annotate, nil];
-    selections=[[NSMutableArray alloc] init];
+    
     
     //make singleton instance
     selections=[singletonObj singleObj];
     selections.notes=[[NSMutableArray alloc] init];
+    
     
    
 

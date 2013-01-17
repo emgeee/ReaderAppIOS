@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "singletonObj.h"
 
 @interface Annotation : UIViewController <UITextFieldDelegate> {
-    NSMutableArray *annotations;
-   // UITextView *annotationText;
+    singletonObj *addedNotes;
+   
 }
 
 @property IBOutlet UITextField *annotationText;
-@property NSMutableArray *annotations;
+
 
 @end
