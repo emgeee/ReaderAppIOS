@@ -10,7 +10,7 @@
 #import "singletonObj.h"
 
 @interface Annotation : UIViewController <UITextFieldDelegate> {
-    singletonObj *addedNotes;
+   
    
 }
 

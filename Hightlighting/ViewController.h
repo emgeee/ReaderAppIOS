@@ -12,7 +12,7 @@
 
 
 @interface ViewController : UIViewController <UIWebViewDelegate>  {
-    singletonObj *selections;
+    
 }
       
     
@@ -35,8 +35,5 @@
 - (IBAction) sliderValueChanged:(id)sender;
 - (IBAction) changeButtonPressed:(id)sender;
 
-//this is just for test purposes
-@property (strong, nonatomic) IBOutlet UILabel *displayValues;
-@property (strong, nonatomic) IBOutlet UITextField *enterAnotherValue;
 @end
 

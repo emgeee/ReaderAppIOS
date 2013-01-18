@@ -11,20 +11,16 @@
 @implementation singletonObj
 
 @synthesize notes;
-@synthesize annotations;
+
 
 +(singletonObj *) singleObj {
-    static singletonObj *single=nil;
-    @synchronized(self)
-    {
-        //if the singleton object doesn't already exist, create it 
-        if(!single)
-        {
-            single=[[singletonObj alloc] init];
-        }
-    }
-    //if it does, return itself
-    return single;
+    static dispatch_once_t pred;
+    static singletonObj *shared = nil;
+    dispatch_once(&pred, ^{
+        shared = [[singletonObj alloc] init];
+        shared.notes = [[NSMutableArray alloc]init];
+    });
+    return shared;
 }
 
 @end

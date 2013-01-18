@@ -11,7 +11,6 @@
 @interface singletonObj : NSObject
     
 @property (nonatomic, retain) NSMutableArray *notes;
-@property (nonatomic, retain) NSMutableArray *annotations;
 
 +(singletonObj *) singleObj;
 

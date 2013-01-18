@@ -19,8 +19,7 @@
 @synthesize singleTap;
 @synthesize selectionText;
 @synthesize fontSlider;
-@synthesize enterAnotherValue;
-@synthesize displayValues;
+
 
 
 
@@ -43,10 +42,7 @@
     [UIMenuController sharedMenuController].menuItems = [NSArray arrayWithObjects:testMenuItem, annotate, nil];
     
     
-    //make singleton instance
-    selections=[singletonObj singleObj];
-    selections.notes=[[NSMutableArray alloc] init];
-    
+        
     
    
 
@@ -112,8 +108,9 @@
    
     //array that holds the highlights
     
-    [selections.notes addObject:selectionText];
-    NSLog(@"%@", [selections.notes objectAtIndex:0]);
+    [[singletonObj singleObj].notes addObject:selectionText];
+    NSLog(@"%@", [[singletonObj singleObj].notes objectAtIndex:0]);
+    NSLog(@"%u", [[singletonObj singleObj].notes count]);
     
     
     //get the current color of the text bkgrd and see if the background color is yellow. aka the text is already highlighted
@@ -135,7 +132,7 @@
         NSLog(@"yes");
         // Get destination view
         NotesViewController *vc = [segue destinationViewController];
-        vc.viewSelections=selections.notes;;
+        //vc->viewSelections.notes=selections.notes;
         
     }
 }

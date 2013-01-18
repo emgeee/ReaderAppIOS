@@ -14,7 +14,6 @@
 
 @implementation NotesViewController
 @synthesize box;
-@synthesize viewSelections;
 @synthesize notesAndHightlights;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,13 +28,12 @@
 - (void)viewDidLoad
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-
-    
-    NSInteger size= [viewSelections count];
+       
+    NSInteger size= [[singletonObj singleObj].notes count];
     NSLog(@"%d", size);
     [super viewDidLoad];
     
-    anotherString= [singletonObj singleObj];
+    
        
   
 }
@@ -57,7 +55,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-       return [viewSelections count];
+       return [[singletonObj singleObj].notes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,7 +73,7 @@
     
     // Configure the cell...
    
-    NSString *country = [viewSelections objectAtIndex:indexPath.row];
+    NSString *country = [[singletonObj singleObj].notes objectAtIndex:indexPath.row];
     cell.textLabel.font=[UIFont fontWithName:@"Arial" size:12];
     cell.textLabel.numberOfLines=4;
     cell.textLabel.text = country;

@@ -30,8 +30,8 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-       addedNotes=[singletonObj singleObj];
-    addedNotes.annotations=[[NSMutableArray alloc] init];
+      
+   // addedNotes.annotations=[[NSMutableArray alloc] init];
 
 	// Do any additional setup after loading the view.
 }
@@ -63,7 +63,7 @@
     NSLog(@"ended now");
     NSString *annotationInput= annotationText.text;
     NSLog(@"%@",annotationInput);
-    [addedNotes.annotations addObject:@"best"];
-    NSLog(@"%d", [addedNotes.annotations count]);
+   [[singletonObj singleObj].notes addObject:@"best"];
+   NSLog(@"%d", [[singletonObj singleObj].notes count]);
 }
 @end

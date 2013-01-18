@@ -11,14 +11,13 @@
 
 @interface NotesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
         NSString *box;
-    NSMutableArray *viewSelections;
-    singletonObj * anotherString;
+  
+  
     
 }
 @property (nonatomic) NSString *box;
-@property NSMutableArray *viewSelections;
+
 @property IBOutlet UITableView *notesAndHightlights;
 
-//display singleton value
-@property (strong, nonatomic) IBOutlet UILabel *showSingleton;
+
 @end
