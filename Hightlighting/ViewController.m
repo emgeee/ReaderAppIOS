@@ -79,16 +79,16 @@
      NSLog(@"%d", count);
     if (count % 2) {
         NSLog(@"odd");
-        myWebView.backgroundColor= [UIColor colorWithRed:(12/255.0) green:(12/255.0) blue:(12/255.0) alpha:1];
+        [myWebView stringByEvaluatingJavaScriptFromString:@"document.body.style.backgroundColor='#000'"];
         //change the textcolor from black to almost white for the dark scheme
         NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.color='#eee'"];
         [myWebView stringByEvaluatingJavaScriptFromString:jsString];
-        
+                
         
     } else {
         NSLog(@"even");
-         myWebView.backgroundColor= [UIColor colorWithRed:(255.0/255.0) green:(255.0/255.0) blue:(255.0/255.0) alpha:1];
-        //change the textcolor from white to black for light theme 
+        [myWebView stringByEvaluatingJavaScriptFromString:@"document.body.style.backgroundColor='#fff'"];
+        //change the textcolor from white to black for light theme
         NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.color='#000'"];
         [myWebView stringByEvaluatingJavaScriptFromString:jsString];
     }
@@ -100,7 +100,7 @@
 - (void)highlight:(id)sender {
     // Perform the action here. THIS DOES NOT WORK AS I WANT. CRY CRY CRY CRY 
     NSLog(@"i'm calling this action");
-    [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, 'black')"];
+   
     
     
     //get selection text so we can store it later
@@ -112,30 +112,32 @@
     NSLog(@"%@", [[singletonObj singleObj].notes objectAtIndex:0]);
     NSLog(@"%u", [[singletonObj singleObj].notes count]);
     
-    
+    NSLog(@"%@", myWebView.backgroundColor);
     //get the current color of the text bkgrd and see if the background color is yellow. aka the text is already highlighted
     NSString *currentColor = [myWebView stringByEvaluatingJavaScriptFromString:@"document.queryCommandValue('backColor')"];
-    if ([currentColor isEqualToString:@"rgb(0, 0, 0)"]) {
-        [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('backColor', false, 'transparent')"];
-        NSLog(@"i'm highlighted");
-    } else {
-        [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, 'black')"];
+    NSLog(@"%@", currentColor);
+    NSString *comparison= @"rgba(0, 0, 0, 0)";
+    NSLog(@"the other is %@", comparison);
+    if ([currentColor isEqualToString: @"rgb(255, 255, 255)"]) {
+        NSLog(@"i'm white, lemme turn pink real quick");
         [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('backColor', false, 'pink')"];
-        [myWebView resignFirstResponder];
+        [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, 'black')"];
+    } else {
+        NSLog(@"notWhite");
     }
+    if ([currentColor isEqualToString: @"rgb(0, 0, 0)"]) {
+        NSLog(@"black");
+        [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('backColor', false, 'pink')"];
+        [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, 'black')"];
+    } else {
+        NSLog(@"notBlack");
+    }
+
+   
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"viewNotes"]) {
-        NSLog(@"yes");
-        // Get destination view
-        NotesViewController *vc = [segue destinationViewController];
-        //vc->viewSelections.notes=selections.notes;
-        
-    }
-}
+
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
