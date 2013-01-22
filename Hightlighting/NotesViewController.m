@@ -47,17 +47,25 @@
 {
    
     
-    return 1;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"notes and highlights";
+    if(section == 0)
+        return @"My HighLights";
+    else
+        return @"My Notes";
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-       return [[singletonObj singleObj].notes count];
+    if(section == 0)
+         return [[singletonObj singleObj].highlights count];
+    else
+        return [[singletonObj singleObj].notes count];
+       
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -72,14 +80,22 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
     }
-    
+     NSString *country = [[singletonObj singleObj].highlights objectAtIndex:[indexPath row]];
+        NSString *country2 = [[singletonObj singleObj].notes objectAtIndex:[indexPath row]];
     // Configure the cell...
-    NSString *country = [[singletonObj singleObj].notes objectAtIndex:[indexPath row]];
+    if(indexPath.section == 0)
+    {
+       cell.textLabel.text = country;
+    }
+    else if(indexPath.section == 1)
+    {
+        cell.textLabel.text = country2;
+   
     cell.textLabel.font=[UIFont fontWithName:@"Arial" size:12];
     cell.textLabel.numberOfLines=4;
-    cell.textLabel.text = country;
     
     
+    }
     
     return cell;
 }
