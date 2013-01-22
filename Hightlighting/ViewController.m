@@ -117,8 +117,8 @@
    
     //array that holds the highlights
     
-    [[singletonObj singleObj].notes addObject:selectionText];
-    NSLog(@"%@", [[singletonObj singleObj].notes objectAtIndex:0]);
+    [[singletonObj singleObj].notes setObject:selectionText forKey:@"highlights"];
+   
     NSLog(@"%u", [[singletonObj singleObj].notes count]);
     
     NSLog(@"%@", myWebView.backgroundColor);

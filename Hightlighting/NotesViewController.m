@@ -72,8 +72,8 @@
     }
     
     // Configure the cell...
-   
-    NSString *country = [[singletonObj singleObj].notes objectAtIndex:indexPath.row];
+    NSArray* keys = [[singletonObj singleObj].notes allKeys];
+    NSString *country = [[singletonObj singleObj].notes objectForKey:[keys objectAtIndex:indexPath.row]];
     cell.textLabel.font=[UIFont fontWithName:@"Arial" size:12];
     cell.textLabel.numberOfLines=4;
     cell.textLabel.text = country;

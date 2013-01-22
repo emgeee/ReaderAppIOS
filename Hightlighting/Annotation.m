@@ -63,7 +63,7 @@
     NSLog(@"ended now");
     NSString *annotationInput= annotationText.text;
     NSLog(@"%@",annotationInput);
-   [[singletonObj singleObj].notes addObject:annotationInput];
+   [[singletonObj singleObj].notes setObject:annotationInput forKey:@"notes"];
    NSLog(@"%d", [[singletonObj singleObj].notes count]);
     [self.navigationController popToRootViewControllerAnimated:TRUE];
     
