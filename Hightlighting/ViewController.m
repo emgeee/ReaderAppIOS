@@ -121,8 +121,8 @@
    
     //array that holds the highlights
     
-    [[singletonObj singleObj].notes addObject:selectionText];
-    NSLog(@"%@", [singletonObj singleObj].notes);
+    [[singletonObj singleObj].highlights addObject:selectionText];
+    NSLog(@"%u", [[singletonObj singleObj].highlights count]);
        // NSLog(@"%@", myWebView.backgroundColor);
     //get the current color of the text bkgrd and see if the background color is yellow. aka the text is already highlighted
     NSString *currentColor = [myWebView stringByEvaluatingJavaScriptFromString:@"document.queryCommandValue('backColor')"];

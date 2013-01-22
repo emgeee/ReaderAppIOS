@@ -19,6 +19,7 @@
     dispatch_once(&pred, ^{
         shared = [[singletonObj alloc] init];
         shared.notes = [[NSMutableArray alloc]init];
+        shared.highlights = [[NSMutableArray alloc]init];
     });
     return shared;
 }
