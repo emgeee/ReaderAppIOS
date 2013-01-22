@@ -41,7 +41,6 @@
     UIMenuItem *annotate     = [[UIMenuItem alloc] initWithTitle:@"Annotate"   action:@selector(annotate)];
     [UIMenuController sharedMenuController].menuItems = [NSArray arrayWithObjects:testMenuItem, annotate, nil];
     
-    
         
     
    
@@ -51,6 +50,7 @@
 
 -(void) viewDidAppear:(BOOL)animated {
      [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [myWebView endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,13 +59,22 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)annotate {
+    //increment varibale count
+    static int count;
+    count= count+1;
+    NSLog(@"the increment variable is set to %d", count);
     NSLog(@"annotating");
     
     //change the text to let you know there is an annoation that correlates with it
     [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('underline', false, 'nil')"];
     
-    NSString *strInputJS= [myWebView stringByEvaluatingJavaScriptFromString:@"pasteHtmlAtCaret();"];
-    [myWebView stringByEvaluatingJavaScriptFromString:strInputJS];
+    NSString *js= [NSString stringWithFormat:@"pasteHtmlAtCaret(%d);", count];
+    
+    [myWebView stringByEvaluatingJavaScriptFromString:js];
+    
+ 
+    
+    [self performSegueWithIdentifier:@"addAnnotation" sender:self];
    }
 
 

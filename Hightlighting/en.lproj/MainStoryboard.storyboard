@@ -69,13 +69,7 @@
                             <constraint firstItem="USD-gY-9rZ" firstAttribute="leading" secondItem="Rlp-D8-0Dl" secondAttribute="leading" type="default" id="o22-WX-vPH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Annotation" id="cyx-vl-Zcc">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="rYq-Tx-lRj">
-                            <connections>
-                                <segue destination="2" kind="push" id="JmW-Hw-YSf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Add Annotation" id="cyx-vl-Zcc"/>
                     <connections>
                         <outlet property="annotationText" destination="USD-gY-9rZ" id="p3p-OM-7YO"/>
                     </connections>
@@ -197,7 +191,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NotesViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="notesAndHightlights" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="showSingleton" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="ViewController" superclassName="UIViewController">
@@ -206,11 +199,7 @@
                 <relationship kind="action" name="addToSingleton:"/>
                 <relationship kind="action" name="changeButtonPressed:"/>
                 <relationship kind="action" name="darkTheme"/>
-                <relationship kind="action" name="handleSingleTap:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="handleSwipeRight:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="action" name="sliderValueChanged:"/>
-                <relationship kind="outlet" name="displayValues" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enterAnotherValue" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="fontSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="myWebView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="singleTap" candidateClass="UISwipeGestureRecognizer"/>
@@ -224,7 +213,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="dy0-bK-IGw"/>
-    </inferredMetricsTieBreakers>
 </document>
