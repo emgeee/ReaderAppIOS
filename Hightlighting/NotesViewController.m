@@ -45,6 +45,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+   
+    
     return 1;
 }
 
@@ -72,8 +74,7 @@
     }
     
     // Configure the cell...
-    NSArray* keys = [[singletonObj singleObj].notes allKeys];
-    NSString *country = [[singletonObj singleObj].notes objectForKey:[keys objectAtIndex:indexPath.row]];
+    NSString *country = [[singletonObj singleObj].notes objectAtIndex:[indexPath row]];
     cell.textLabel.font=[UIFont fontWithName:@"Arial" size:12];
     cell.textLabel.numberOfLines=4;
     cell.textLabel.text = country;

@@ -109,7 +109,11 @@
 - (void)highlight:(id)sender {
     // Perform the action here. THIS DOES NOT WORK AS I WANT. CRY CRY CRY CRY 
     NSLog(@"i'm calling this action");
-   
+    static int count;
+    count= count+1;
+    
+    NSString *key= [NSString stringWithFormat:@"highlighting%d", count];
+    NSLog(@"%@", key);
     
     
     //get selection text so we can store it later
@@ -117,18 +121,16 @@
    
     //array that holds the highlights
     
-    [[singletonObj singleObj].notes setObject:selectionText forKey:@"highlights"];
-   
-    NSLog(@"%u", [[singletonObj singleObj].notes count]);
-    
-    NSLog(@"%@", myWebView.backgroundColor);
+    [[singletonObj singleObj].notes addObject:selectionText];
+    NSLog(@"%@", [singletonObj singleObj].notes);
+       // NSLog(@"%@", myWebView.backgroundColor);
     //get the current color of the text bkgrd and see if the background color is yellow. aka the text is already highlighted
     NSString *currentColor = [myWebView stringByEvaluatingJavaScriptFromString:@"document.queryCommandValue('backColor')"];
-    NSLog(@"%@", currentColor);
+    //NSLog(@"%@", currentColor);
     NSString *comparison= @"rgba(0, 0, 0, 0)";
-    NSLog(@"the other is %@", comparison);
+   // NSLog(@"the other is %@", comparison);
     if ([currentColor isEqualToString: @"rgb(255, 255, 255)"]) {
-        NSLog(@"i'm white, lemme turn pink real quick");
+       // NSLog(@"i'm white, lemme turn pink real quick");
         [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('backColor', false, 'pink')"];
         [myWebView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, 'black')"];
     } else {

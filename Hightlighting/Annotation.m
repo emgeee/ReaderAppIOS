@@ -60,11 +60,16 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
+    static int count;
+    count= count+1;
+    
+    NSString *key= [NSString stringWithFormat:@"note%d", count];
+    NSLog(@"%@", key);
     NSLog(@"ended now");
     NSString *annotationInput= annotationText.text;
     NSLog(@"%@",annotationInput);
-   [[singletonObj singleObj].notes setObject:annotationInput forKey:@"notes"];
-   NSLog(@"%d", [[singletonObj singleObj].notes count]);
+    [[singletonObj singleObj].notes addObject:annotationInput];
+   
     [self.navigationController popToRootViewControllerAnimated:TRUE];
     
     }

@@ -18,7 +18,7 @@
     static singletonObj *shared = nil;
     dispatch_once(&pred, ^{
         shared = [[singletonObj alloc] init];
-        shared.notes = [[NSMutableDictionary alloc]init];
+        shared.notes = [[NSMutableArray alloc]init];
     });
     return shared;
 }
