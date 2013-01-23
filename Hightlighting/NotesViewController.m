@@ -61,17 +61,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger highlightsNum= ([[singletonObj singleObj].highlights count]);
+    NSInteger notesNum=  ([[singletonObj singleObj].notes count]);
+    NSLog(@"%d", highlightsNum);
+    NSLog(@"%d", notesNum);
+    
     if(section == 0)
-         return [[singletonObj singleObj].highlights count];
+        return highlightsNum;
     else
-        return [[singletonObj singleObj].notes count];
+        return notesNum;
        
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CellIdentifier";
-    
+  
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     //important to have this case in case the cellForRowAtIndexPath returns nil. this says if there is no cell, create one because we have none to resuse 
@@ -80,23 +86,23 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
     }
-     NSString *country = [[singletonObj singleObj].highlights objectAtIndex:[indexPath row]];
-        NSString *country2 = [[singletonObj singleObj].notes objectAtIndex:[indexPath row]];
+        
+    
+        
+  
     // Configure the cell...
     if(indexPath.section == 0)
     {
+    NSString *country = [[singletonObj singleObj].highlights objectAtIndex:[indexPath row]];
        cell.textLabel.text = country;
     }
-    else if(indexPath.section == 1)
+    else 
     {
+        NSString *country2 = [[singletonObj singleObj].notes objectAtIndex:[indexPath row]];
         cell.textLabel.text = country2;
-   
+    }
     cell.textLabel.font=[UIFont fontWithName:@"Arial" size:12];
     cell.textLabel.numberOfLines=4;
-    
-    
-    }
-    
     return cell;
 }
 
