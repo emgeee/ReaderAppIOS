@@ -9,6 +9,7 @@
 #import "Annotation.h"
 #import "NotesViewController.h"
 
+
 @interface Annotation ()
 
 @end
@@ -27,10 +28,19 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+     [super viewDidLoad];
+    static int count;
+    count= count+1;
+    NSString *key= [NSString stringWithFormat:@"note%d", count];
+    NSLog(@"%@", key);
+   
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if ([[singletonObj singleObj].notes count]>0){
+        NSInteger numba=[[singletonObj singleObj].notes count]-1;
+       
+    annotationText.text= [[singletonObj singleObj].notes objectAtIndex:numba];
+    }
     
-      
    // addedNotes.annotations=[[NSMutableArray alloc] init];
 
 	// Do any additional setup after loading the view.
@@ -60,11 +70,9 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    static int count;
-    count= count+1;
     
-    NSString *key= [NSString stringWithFormat:@"note%d", count];
-    NSLog(@"%@", key);
+    
+    
     NSLog(@"ended now");
     NSString *annotationInput= annotationText.text;
     NSLog(@"%@",annotationInput);

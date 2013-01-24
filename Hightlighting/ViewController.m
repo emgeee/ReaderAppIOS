@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "NotesViewController.h"
 
+
 @interface ViewController ()
 
 @end
@@ -60,8 +61,7 @@
 }
 -(void)annotate {
     //increment varibale count
-    static int count;
-    count= count+1;
+    NSInteger count = [self count];
     NSLog(@"the increment variable is set to %d", count);
     NSLog(@"annotating");
     
@@ -71,14 +71,23 @@
     NSString *js= [NSString stringWithFormat:@"pasteHtmlAtCaret(%d);", count];
     
     [myWebView stringByEvaluatingJavaScriptFromString:js];
-    
- 
-    
     [self performSegueWithIdentifier:@"addAnnotation" sender:self];
-   }
+    
+    
+    
+}
 
+-(NSInteger) count {
+    static int count;
+    count=count+1;
+    return count;
+    
+}
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"addAnnotation"]) {
+           }
+}
 
 -(void)darkTheme {
     
@@ -163,9 +172,9 @@
 }
 
 -(IBAction)handleSingleTap:(UISwipeGestureRecognizer *)singleTap {
-    textOptions.hidden=TRUE;
-    NSLog(@"thanks for tapping");
+    textOptions.hidden=true;
 }
+
 
 -(IBAction)handleSwipeRight:(UISwipeGestureRecognizer *)swipeRight {
     textOptions.hidden=FALSE;

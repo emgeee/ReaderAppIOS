@@ -15,6 +15,6 @@
 }
 
 @property IBOutlet UITextField *annotationText;
-
+@property NSInteger numba;
 
 @end
