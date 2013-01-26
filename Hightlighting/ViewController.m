@@ -74,7 +74,7 @@
     NSString *js= [NSString stringWithFormat:@"pasteHtmlAtCaret(%d);", count];
     
     [myWebView stringByEvaluatingJavaScriptFromString:js];
-    key++;
+    key=count;;
     [self performSegueWithIdentifier:@"addAnnotation" sender:self];
     
     
