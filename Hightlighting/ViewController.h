@@ -23,6 +23,12 @@
 @property NSString *selectionText;
 @property IBOutlet UISlider *fontSlider;
 
+//count is incremental and let's us assign new div ids for annotations
+@property (nonatomic) NSInteger count;
+
+//key is what we se the div ids to
+@property (nonatomic) NSInteger key;
+
 
 
 -(IBAction) darkTheme;

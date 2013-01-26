@@ -16,6 +16,7 @@
 
 @implementation Annotation
 @synthesize annotationText;
+@synthesize noteKey;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,16 +30,16 @@
 - (void)viewDidLoad
 {
      [super viewDidLoad];
-    static int count;
-    count= count+1;
-    NSString *key= [NSString stringWithFormat:@"note%d", count];
-    NSLog(@"%@", key);
+  
+    
+    NSString *key= [NSString stringWithFormat:@"note%d", noteKey];
+    NSLog(@"the notekey is now this %@", key);
    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    if ([[singletonObj singleObj].notes count]>0){
-        NSInteger numba=[[singletonObj singleObj].notes count]-1;
+    if ([[singletonObj singleObj].notes count]>0 && noteKey<=[[singletonObj singleObj].notes count]){
        
-    annotationText.text= [[singletonObj singleObj].notes objectAtIndex:numba];
+        NSInteger noteIndex=noteKey-1;
+    annotationText.text= [[singletonObj singleObj].notes objectAtIndex:noteIndex];
     }
     
    // addedNotes.annotations=[[NSMutableArray alloc] init];

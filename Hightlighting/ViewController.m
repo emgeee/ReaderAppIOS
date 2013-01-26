@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "NotesViewController.h"
+#import "Annotation.h"
+
 
 
 @interface ViewController ()
@@ -20,7 +22,8 @@
 @synthesize singleTap;
 @synthesize selectionText;
 @synthesize fontSlider;
-
+@synthesize count;
+@synthesize key;
 
 
 
@@ -60,9 +63,9 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)annotate {
+     [self Add];
     //increment varibale count
-    NSInteger count = [self count];
-    NSLog(@"the increment variable is set to %d", count);
+       NSLog(@"the increment variable is set to %d", count);
     NSLog(@"annotating");
     
     //change the text to let you know there is an annoation that correlates with it
@@ -71,31 +74,35 @@
     NSString *js= [NSString stringWithFormat:@"pasteHtmlAtCaret(%d);", count];
     
     [myWebView stringByEvaluatingJavaScriptFromString:js];
+    key++;
     [self performSegueWithIdentifier:@"addAnnotation" sender:self];
     
     
     
 }
 
--(NSInteger) count {
-    static int count;
-    count=count+1;
-    return count;
-    
+-(NSInteger) Add {
+    return count++;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addAnnotation"]) {
+        
+        Annotation *destViewController = segue.destinationViewController;
+        
+        destViewController.noteKey=key;
+        NSLog(@"we are passing %d", key);
+        
            }
 }
 
 -(void)darkTheme {
     
     //increment varibale count
-    static int count;
-    count= count+1;
-     NSLog(@"%d", count);
-    if (count % 2) {
+    static int countMe;
+    countMe= countMe+1;
+     NSLog(@"%d", countMe);
+    if (countMe % 2) {
         NSLog(@"odd");
         [myWebView stringByEvaluatingJavaScriptFromString:@"document.body.style.backgroundColor='#000'"];
         //change the textcolor from black to almost white for the dark scheme
@@ -118,11 +125,11 @@
 - (void)highlight:(id)sender {
     // Perform the action here. THIS DOES NOT WORK AS I WANT. CRY CRY CRY CRY 
     NSLog(@"i'm calling this action");
-    static int count;
-    count= count+1;
+    static int countMe;
+    countMe= countMe+1;
     
-    NSString *key= [NSString stringWithFormat:@"highlighting%d", count];
-    NSLog(@"%@", key);
+    NSString *highlightCount= [NSString stringWithFormat:@"highlighting%d", countMe];
+    NSLog(@"%@", highlightCount);
     
     
     //get selection text so we can store it later
@@ -163,6 +170,10 @@
 
     if ([[request.URL absoluteString]compare:@"http://google.com/"] == NSOrderedSame) {
         NSLog(@"%@", [request.URL absoluteString]);
+        NSString *divId =[myWebView stringByEvaluatingJavaScriptFromString:@"returnValue()"];
+        NSInteger divNum= [divId intValue];
+        NSLog(@"the div ID we care about is %d",divNum);
+        key=divNum;
         
         [self performSegueWithIdentifier:@"addAnnotation" sender:self];
         
