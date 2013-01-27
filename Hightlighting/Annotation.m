@@ -36,7 +36,7 @@
     NSLog(@"the notekey is now this %@", key);
    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    if ([[singletonObj singleObj].notes count]>0 && noteKey<=[[singletonObj singleObj].notes count]){
+    if (noteKey>0 &&[[singletonObj singleObj].notes count]>0 && noteKey<=[[singletonObj singleObj].notes count]){
        
         NSInteger noteIndex=noteKey-1;
     annotationText.text= [[singletonObj singleObj].notes objectAtIndex:noteIndex];

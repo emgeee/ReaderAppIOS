@@ -7,6 +7,7 @@
 //
 
 #import "NotesViewController.h"
+#import "Annotation.h"
 
 @interface NotesViewController ()
 
@@ -15,6 +16,7 @@
 @implementation NotesViewController
 @synthesize box;
 @synthesize notesAndHightlights;
+@synthesize row;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -103,7 +105,27 @@
     }
     cell.textLabel.font=[UIFont fontWithName:@"Arial" size:12];
     cell.textLabel.numberOfLines=4;
+    
+    row= [indexPath row]+1;
+    NSLog(@"this si the %d row", row);
+
     return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"editAnnotation" sender:self];
+       
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"editAnnotation"]) {
+        
+        Annotation *destViewController = segue.destinationViewController;
+        destViewController.noteKey=row;
+        
+               
+    }
 }
 
 - (void)didReceiveMemoryWarning

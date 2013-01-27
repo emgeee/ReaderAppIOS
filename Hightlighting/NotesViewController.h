@@ -18,6 +18,6 @@
 @property (nonatomic) NSString *box;
 
 @property IBOutlet UITableView *notesAndHightlights;
-
+@property (nonatomic) NSInteger row;
 
 @end
